@@ -1,0 +1,120 @@
+# kind -- DaemonSet or Deployment
+kind: DaemonSet
+
+env: 
+  - name: NODE_NAME
+    valueFrom:
+      fieldRef:
+        fieldPath: spec.nodeName
+
+config:
+  service: |
+    [SERVICE]
+        Daemon Off
+        Flush {{ .Values.flush }}
+        Log_Level {{ .Values.logLevel }}
+        Parsers_File parsers.conf
+        Parsers_File custom_parsers.conf
+        HTTP_Server On
+        HTTP_Listen 0.0.0.0
+        HTTP_Port {{ .Values.metricsPort }}
+        Health_Check On
+
+  ## https://docs.fluentbit.io/manual/pipeline/inputs
+  inputs: |
+    [INPUT]
+        Name tail
+        Path /var/log/containers/antrea-agent*.log
+        Tag antreaagent
+        parser antrea
+        Mem_Buf_Limit 5MB
+    
+    [INPUT]
+        Name tail
+        Path /var/log/containers/antrea-controller*.log
+        Tag antreacontroller
+        parser antrea
+        Mem_Buf_Limit 5MB
+
+    [INPUT]
+        Name tail
+        Path /var/log/antrea/networkpolicy/np*.log
+        Tag antreanetworkpolicy
+        parser antreanetworkpolicy
+        Mem_Buf_Limit 5MB
+
+    [INPUT]
+        Name tail
+        Path /var/log/antrea/openvswitch/ovs*.log
+        Tag ovs
+        parser ovs
+        Mem_Buf_Limit 5MB
+  
+  ## https://docs.fluentbit.io/manual/pipeline/filters
+  filters: |
+    [FILTER]
+        Name kubernetes
+        Match antrea
+        Merge_Log On
+        Keep_Log Off
+        K8S-Logging.Parser On
+        K8S-Logging.Exclude On
+
+    [FILTER]
+        Name record_modifier
+        Match *
+        Record podname ${HOSTNAME}
+        Record nodename ${NODE_NAME}
+
+  ## https://docs.fluentbit.io/manual/pipeline/outputs
+  outputs: |
+    [OUTPUT]
+        Name loki
+        Match antreaagent
+        Host loki-gateway.loki.svc
+        Port 80
+        Labels job=fluentbit-antrea, agent_log_category=$category
+        Label_keys $log_level, $nodename
+    
+    [OUTPUT]
+        Name loki
+        Match antreacontroller
+        Host loki-gateway.loki.svc
+        Port 80
+        Labels job=fluentbit-antrea-controller, controller_log_category=$category
+        Label_keys $log_level, $nodename
+  
+    [OUTPUT]
+        Name loki
+        Match antreanetworkpolicy
+        Host loki-gateway.loki.svc
+        Port 80
+        Labels job=fluentbit-antrea-netpolicy
+        Label_keys $nodename, $action
+  
+    [OUTPUT]
+        Name loki
+        Match ovs
+        Host loki-gateway.loki.svc
+        Port 80
+        Labels job=fluentbit-antrea-ovs
+        Label_keys $nodename, $ovs_log_level, $ovs_category
+
+    ## https://docs.fluentbit.io/manual/pipeline/parsers
+  customParsers: |
+    [PARSER]
+        Name antrea
+        Format regex
+        # https://rubular.com/r/04kWAJU1E3e20U
+        Regex ^(?<timestamp>[^ ]+) (?<stream>stdout|stderr) (?<logtag>[^ ]*) ((?<log_level>[^ ]?)(?<code>\d\d\d\d)) (?<time>[^ ]+) (.*) ((?<category>.*)?(.go.*\])) (?<message>.*)$
+   
+    [PARSER]    
+        Name antreanetworkpolicy
+        Format regex
+        # https://rubular.com/r/gCTJfLIkeioOgO
+        Regex ^(?<date>[^ ]+) (?<time>[^ ]+) (?<ovsTableName>[^ ]+) (?<antreaNativePolicyReference>[^ ]+) (?<ruleName>[^ ]+) (?<action>[^( ]+) (?<openflowPriority>[^ ]+) (?<sourceIP>[^ ]+) (?<sourcePort>[^ ]+) (?<destinationIP>[^ ]+) (?<destinationPort>[^ ]+) (?<protocol>[^ ]+) (?<packetLength>.*)$
+
+    [PARSER]    
+        Name ovs
+        Format regex
+        Regex ^((?<date>[^ ].*)\|(?<log_code>.*)\|(?<ovs_category>.*)\|(?<ovs_log_level>.*))\|(?<message>\w+\s.*$)

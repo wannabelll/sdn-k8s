@@ -1,0 +1,66 @@
+loki:
+  auth_enabled: false
+  storage_config:
+    boltdb_shipper:
+      active_index_directory: /var/loki/index
+      cache_location: /var/loki/index_cache
+      resync_interval: 5s
+      shared_store: s3
+  compactor:
+    working_directory: /var/loki/compactor
+    shared_store: s3
+    compaction_interval: 5m
+  storage:
+    bucketNames:
+      chunks: chunks
+      ruler: ruler
+      admin: admin
+    type: s3
+    s3:
+      s3: 
+      endpoint: https://minio.logs.svc.cluster.local:443
+      region: null
+      secretAccessKey: gpagAoN2e6iKjQqcPb7xNoD9Hsz1xRgDotPGBRff
+      accessKeyId: 6SFUBPNAZB2BMYAWBXMZ
+      s3ForcePathStyle: true
+      insecure: true
+      http_config:
+        insecure_skip_verify: true
+#
+  querier:
+    max_concurrent: 4096
+  
+  query_scheduler:
+    max_outstanding_requests_per_tenant: 4096
+
+# Configuration for the write
+write:
+  persistence:
+    # -- Size of persistent disk
+    size: 10Gi
+    storageClass: vsphere-sc
+# Configuration for the read node(s)
+read:
+  persistence:
+    # -- Size of persistent disk
+    size: 10Gi
+    storageClass: vsphere-sc
+    # -- Selector for persistent disk
+
+# Configuration for the Gateway
+gateway:
+  # -- Specifies whether the gateway should be enabled
+  enabled: true
+  # -- Number of replicas for the gateway
+  service:
+    # -- Port of the gateway service
+    port: 80
+    # -- Type of the gateway service
+    type: LoadBalancer
+  # Basic auth configuration
+  basicAuth:
+    # -- Enables basic authentication for the gateway
+    enabled: false
+    # -- The basic auth username for the gateway
+
+
