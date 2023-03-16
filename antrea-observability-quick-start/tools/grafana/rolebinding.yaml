@@ -5,12 +5,6 @@ kind: RoleBinding
 metadata:
   name: grafana
   namespace: observability
-  labels:
-    helm.sh/chart: grafana-6.52.3
-    app.kubernetes.io/name: grafana
-    app.kubernetes.io/instance: grafana
-    app.kubernetes.io/version: "9.4.3"
-    app.kubernetes.io/managed-by: Helm
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role

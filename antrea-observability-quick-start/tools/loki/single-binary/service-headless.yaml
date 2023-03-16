@@ -6,7 +6,7 @@ metadata:
   name: loki-headless
   namespace: observability
   labels:
-    helm.sh/chart: loki-4.6.1
+    helm.sh/chart: loki-4.8.0
     app.kubernetes.io/name: loki
     app.kubernetes.io/instance: loki
     app.kubernetes.io/version: "2.7.3"

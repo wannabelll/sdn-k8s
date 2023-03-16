@@ -4,9 +4,8 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: loki
-  namespace: observability
   labels:
-    helm.sh/chart: loki-4.6.1
+    helm.sh/chart: loki-4.8.0
     app.kubernetes.io/name: loki
     app.kubernetes.io/instance: loki
     app.kubernetes.io/version: "2.7.3"
@@ -33,7 +32,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: d217af80657b715f3b41d21704f1ad20762e37c282017378de3efd6ec6d6e51a
+        checksum/config: e0127c0d602a5c335906fe08a9c0397a41239a6490f8f826038742e8c9ec5f0e
       labels:
         app.kubernetes.io/name: loki
         app.kubernetes.io/instance: loki
