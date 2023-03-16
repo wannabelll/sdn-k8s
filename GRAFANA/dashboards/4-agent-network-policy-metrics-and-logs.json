@@ -1,79 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "prometheus",
-      "label": "prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    },
-    {
-      "name": "loki",
-      "label": "loki",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "loki",
-      "pluginName": "Loki"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "bargauge",
-      "name": "Bar gauge",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "gauge",
-      "name": "Gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "9.3.6"
-    },
-    {
-      "type": "panel",
-      "id": "logs",
-      "name": "Logs",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "loki",
-      "name": "Loki",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "piechart",
-      "name": "Pie chart",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -99,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
   "links": [
     {
       "asDropdown": false,
@@ -166,7 +90,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -243,7 +167,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -422,7 +346,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -536,7 +460,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (action) (sum_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"$action\"} | json | unwrap packetLength | __error__=\"\" [$__interval]))\n",
+          "expr": "sum by (action) (sum_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"$action\"} | json | unwrap packetLength | __error__=\"\" | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\" [$__interval]))\n",
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
           "legendFormat": "{{action}}",
           "queryType": "range",
@@ -553,6 +477,10 @@
       },
       "fieldConfig": {
         "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "displayName": "${__series.name}",
           "mappings": [],
           "thresholds": {
             "mode": "percentage",
@@ -560,40 +488,19 @@
               {
                 "color": "green",
                 "value": null
+              },
+              {
+                "color": "orange",
+                "value": 70
+              },
+              {
+                "color": "red",
+                "value": 85
               }
             ]
           }
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Drop"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "mode": "palette-classic"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "Reject"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "mode": "palette-classic"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -614,7 +521,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": false
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -622,7 +529,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (action) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"$action\"} [$__interval]))\n",
+          "expr": "sum (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"$action\"} | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\"[$__range])) by (action)\n",
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
           "legendFormat": "{{action}}",
           "queryType": "range",
@@ -675,7 +582,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "{job=\"fluentbit-antrea-netpolicy\",action=~\"$action\", nodename=~\"$instance\"} \n|  json \n|  line_format \"{{.action}} {{.protocol}} packet from Source:{{.sourceIP}}:{{.sourcePort}} to Destination:{{.destinationIP}}:{{.destinationPort}} hitting rule {{.ruleName}} with reference {{.antreaNativePolicyReference}} at node {{.nodename}}\"",
+          "expr": "{job=\"fluentbit-antrea-netpolicy\",action=~\"$action\", nodename=~\"$instance\"} \n|  json \n|  line_format \"🛡️ {{.action}} {{.protocol}} packet from Source:{{.sourceIP}}:{{.sourcePort}} to Destination:{{.destinationIP}}:{{.destinationPort}} hitting rule {{.ruleName}} with reference {{.antreaNativePolicyReference}} at node {{.nodename}}\" \n| sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\"",
           "hide": false,
           "queryType": "range",
           "refId": "B"
@@ -707,12 +614,14 @@
           "color": {
             "mode": "continuous-GrYlRd"
           },
+          "displayName": "${__series.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -744,7 +653,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -752,7 +661,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by(ruleName) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=\"Allow\"} | json | __error__=`` [$__interval]))",
+          "expr": "sum by(ruleName) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=\"Allow\"} | json | __error__=`` | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\" [$__range]))",
           "hide": false,
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
           "legendFormat": "{{ruleName}}",
@@ -760,7 +669,7 @@
           "refId": "A"
         }
       ],
-      "title": "Allowed Rules Hits",
+      "title": "Top Allowed Rules Hits by Name",
       "transformations": [],
       "type": "bargauge"
     },
@@ -774,12 +683,14 @@
           "color": {
             "mode": "continuous-GrYlRd"
           },
+          "displayName": "${__series.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -798,7 +709,7 @@
       },
       "id": 25,
       "options": {
-        "displayMode": "basic",
+        "displayMode": "gradient",
         "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "horizontal",
@@ -811,7 +722,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -819,7 +730,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (destinationIP) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=\"Allow\"} | json | __error__=`` [$__interval]))",
+          "expr": "topk(5, sum by(destinationIP) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=\"Allow\"} | json | __error__=`` | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\" [$__range])))",
           "hide": false,
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
           "legendFormat": "{{destinationIP}}",
@@ -827,7 +738,7 @@
           "refId": "A"
         }
       ],
-      "title": "Allowed DestinationIP",
+      "title": "Top Allowed DestinationIP",
       "transformations": [
         {
           "id": "filterFieldsByName",
@@ -854,12 +765,14 @@
           "color": {
             "mode": "continuous-GrYlRd"
           },
+          "displayName": "${__series.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -878,7 +791,7 @@
       },
       "id": 26,
       "options": {
-        "displayMode": "basic",
+        "displayMode": "gradient",
         "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "horizontal",
@@ -891,7 +804,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -899,15 +812,15 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (sourceIP) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=\"Allow\"} | json | __error__=`` [$__interval]))",
+          "expr": "topk(2, sum by (sourceIP) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=\"Allow\"} | json | __error__=`` | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\" [$__range])))",
           "hide": false,
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
-          "legendFormat": "{{destinationIP}}",
+          "legendFormat": "{{sourceIP}}",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "Allowed SourceIP",
+      "title": "Top Allowed SourceIP",
       "transformations": [
         {
           "id": "filterFieldsByName",
@@ -984,7 +897,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (destinationPort, protocol, action) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=\"Allow\"} | json | __error__=`` [$__interval])) ",
+          "expr": "sum by (destinationPort, protocol, action) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=\"Allow\"} | json | __error__=`` | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\" [$__range])) ",
           "hide": false,
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
           "legendFormat": "{{destinationIP}}",
@@ -1014,12 +927,14 @@
           "color": {
             "mode": "continuous-GrYlRd"
           },
+          "displayName": "${__series.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1038,7 +953,7 @@
       },
       "id": 21,
       "options": {
-        "displayMode": "basic",
+        "displayMode": "gradient",
         "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "horizontal",
@@ -1051,7 +966,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1059,7 +974,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by(protocol, sourceIP, destinationIP, destinationPort) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=\"Allow\"} | json | __error__=`` [$__interval]))",
+          "expr": "topk(2, sum by(protocol, sourceIP, destinationIP, destinationPort) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=\"Allow\"} | json | __error__=`` | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\"[$__range])))",
           "hide": false,
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
           "legendFormat": "{{sourceIP}} - {{destinationIP}} {{protocol}} {{destinationPort}}",
@@ -1067,7 +982,7 @@
           "refId": "A"
         }
       ],
-      "title": "Allowed Conversations",
+      "title": "Top Allowed Conversations",
       "transformations": [
         {
           "id": "filterFieldsByName",
@@ -1107,12 +1022,14 @@
           "color": {
             "mode": "continuous-GrYlRd"
           },
+          "displayName": "${__series.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1144,7 +1061,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1152,7 +1069,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "topk(5, sum by(ruleName) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"Reject|Drop\"} | json | __error__=`` [$__interval])))",
+          "expr": "topk(2, sum by(ruleName) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"Reject|Drop\"} | json | __error__=`` | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\" [$__range])))",
           "hide": false,
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
           "legendFormat": "{{ruleName}}",
@@ -1160,7 +1077,7 @@
           "refId": "A"
         }
       ],
-      "title": "Denied Rules Hits",
+      "title": "Top Denied Rules Hits by Name",
       "transformations": [],
       "type": "bargauge"
     },
@@ -1174,12 +1091,14 @@
           "color": {
             "mode": "continuous-GrYlRd"
           },
+          "displayName": "${__series.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1198,7 +1117,7 @@
       },
       "id": 19,
       "options": {
-        "displayMode": "basic",
+        "displayMode": "gradient",
         "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "horizontal",
@@ -1211,7 +1130,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1219,15 +1138,15 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "topk(5, sum by (sourceIP) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"Drop|Reject\"} | json | __error__=`` [$__interval])))",
+          "expr": "topk(2, sum by (sourceIP) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"Drop|Reject\"} | json | __error__=`` | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\" [$__range])))",
           "hide": false,
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
-          "legendFormat": "{{destinationIP}}",
+          "legendFormat": "{{sourceIP}}",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "title": "Denied SourceIP",
+      "title": "Top Denied SourceIP",
       "transformations": [
         {
           "id": "filterFieldsByName",
@@ -1252,14 +1171,16 @@
       "fieldConfig": {
         "defaults": {
           "color": {
-            "mode": "continuous-GrYlRd"
+            "mode": "continuous-RdYlGr"
           },
+          "displayName": "${__series.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1278,7 +1199,7 @@
       },
       "id": 18,
       "options": {
-        "displayMode": "basic",
+        "displayMode": "gradient",
         "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "horizontal",
@@ -1291,7 +1212,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1299,7 +1220,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (destinationIP) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"Drop|Reject\"} | json | __error__=`` [$__interval]))",
+          "expr": "topk(2, sum by (destinationIP) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"Drop|Reject\"} | json | __error__=`` | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\" [$__range])))",
           "hide": false,
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
           "legendFormat": "{{destinationIP}}",
@@ -1307,7 +1228,7 @@
           "refId": "A"
         }
       ],
-      "title": "Denied DestinationIP",
+      "title": "Top Denied DestinationIP",
       "transformations": [
         {
           "id": "filterFieldsByName",
@@ -1341,6 +1262,7 @@
               "viz": false
             }
           },
+          "displayName": "${__series.name}",
           "mappings": [],
           "unit": "hits"
         },
@@ -1384,7 +1306,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (destinationPort, protocol, action) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"Reject|Drop\"} | json | __error__=`` [$__interval]))",
+          "expr": "sum by (destinationPort, protocol, action) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"Reject|Drop\"} | json | __error__=`` | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\" [$__range]))",
           "hide": false,
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
           "legendFormat": "{{destinationIP}}",
@@ -1414,12 +1336,14 @@
           "color": {
             "mode": "continuous-GrYlRd"
           },
+          "displayName": "${__series.name}",
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1438,7 +1362,7 @@
       },
       "id": 27,
       "options": {
-        "displayMode": "basic",
+        "displayMode": "gradient",
         "minVizHeight": 10,
         "minVizWidth": 0,
         "orientation": "horizontal",
@@ -1451,7 +1375,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -1459,7 +1383,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (protocol, sourceIP, destinationIP, destinationPort) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"Drop|Reject\"} | json | __error__=`` [$__interval])) ",
+          "expr": "topk(2, sum by (protocol, sourceIP, destinationIP, destinationPort) (count_over_time({job=\"fluentbit-antrea-netpolicy\", action=~\"Drop|Reject\"} | json | __error__=`` | sourceIP =~\".*$sourceIP_filter\" and destinationIP =~\".*$destinationIP_filter\" [$__range])))",
           "hide": false,
           "key": "Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0",
           "legendFormat": "{{sourceIP}} - {{destinationIP}} {{protocol}} {{destinationPort}}",
@@ -1467,7 +1391,7 @@
           "refId": "A"
         }
       ],
-      "title": "Denied Conversations",
+      "title": "Top Denied Conversations",
       "transformations": [
         {
           "id": "filterFieldsByName",
@@ -1485,8 +1409,9 @@
       "type": "bargauge"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 37,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "antrea_v1.10"
@@ -1494,7 +1419,15 @@
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "prometheus"
@@ -1516,7 +1449,15 @@
         "type": "query"
       },
       {
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "loki",
           "uid": "loki"
@@ -1538,17 +1479,57 @@
         "skipUrlSync": false,
         "sort": 0,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": ".180",
+          "value": ".180"
+        },
+        "hide": 0,
+        "label": "src_IP",
+        "name": "sourceIP_filter",
+        "options": [
+          {
+            "selected": true,
+            "text": ".180",
+            "value": ".180"
+          }
+        ],
+        "query": ".180",
+        "skipUrlSync": false,
+        "type": "textbox"
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "",
+          "value": ""
+        },
+        "hide": 0,
+        "label": "dest_IP",
+        "name": "destinationIP_filter",
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "query": "",
+        "skipUrlSync": false,
+        "type": "textbox"
       }
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "4.- Agent Network Policy Metrics and Logs",
   "uid": "ICIWcK0Vz",
-  "version": 11,
+  "version": 1,
   "weekStart": ""
 }

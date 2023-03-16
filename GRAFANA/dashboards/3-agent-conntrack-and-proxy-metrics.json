@@ -157,6 +157,7 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
             "max"
           ],
@@ -165,8 +166,8 @@
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "targets": [
@@ -281,16 +282,17 @@
       "options": {
         "legend": {
           "calcs": [
-            "max",
-            "mean"
+            "lastNotNull",
+            "mean",
+            "max"
           ],
           "displayMode": "table",
           "placement": "right",
           "showLegend": true
         },
         "tooltip": {
-          "mode": "single",
-          "sort": "none"
+          "mode": "multi",
+          "sort": "desc"
         }
       },
       "targets": [
@@ -587,13 +589,13 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-5m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "3.-  Agent Conntrack and Proxy Metrics",
   "uid": "0oZR5K0Vk",
-  "version": 15,
+  "version": 16,
   "weekStart": ""
 }

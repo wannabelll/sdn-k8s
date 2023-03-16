@@ -1,0 +1,21 @@
+datasources:
+ datasources.yaml:
+   apiVersion: 1
+   datasources:
+   # Loki Datasource using distributed deployment (otherwise use port 3100)
+    - name: loki
+      type: loki
+      uid: loki
+      url: http://loki-gateway.loki.svc.cluster.local:80
+      access: proxy
+      version: 1
+      editable: false
+   # Prometheus Datasource marked as default
+    - name: prometheus
+      type: prometheus
+      uid: prometheus
+      url: http://prometheus-service.monitoring.svc.cluster.local:8080
+      access: proxy
+      isDefault: true
+      version: 1
+      editable: false

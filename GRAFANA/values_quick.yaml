@@ -1,0 +1,31 @@
+# Enable Data Persistence
+persistence:
+  type: pvc
+  enabled: false
+  accessModes:
+    - ReadWriteOnce
+  size: 10Gi
+  # annotations: {}
+# Enable Sidecars containers for dashboards and datasource import via configmaps
+sidecar:
+  dashboards:
+    enabled: true
+    label: grafana_dashboard
+    labelValue: "1"
+  datasources:
+    enabled: true
+    label: grafana_datasource
+    labelValue: "1"
+# Define how to expose the service
+service:
+  enabled: true
+  type: LoadBalancer
+  port: 80
+  targetPort: 3000
+    # targetPort: 4181 To be used with a proxy extraContainer
+  ## Service annotations. Can be templated.
+  annotations: {}
+  labels: {}
+  portName: service
+  # Adds the appProtocol field to the service. This allows to work with istio protocol selection. Ex: "http" or "tcp"
+  appProtocol: ""
