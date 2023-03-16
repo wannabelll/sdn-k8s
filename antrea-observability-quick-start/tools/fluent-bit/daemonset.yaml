@@ -4,7 +4,6 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: fluent-bit
-  namespace: observability
   labels:
     helm.sh/chart: fluent-bit-0.24.0
     app.kubernetes.io/name: fluent-bit
@@ -19,7 +18,7 @@ spec:
   template:
     metadata:
       annotations:
-        checksum/config: b88e29fdd93ed76c207ab245ab57b54e300157bab319e5bac9d508e86a3ede1e
+        checksum/config: 1d4d321a05366f65fcb698c0622cc94ac59536db4bc00972f3e6a6b87de20eb0
         checksum/luascripts: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
       labels:
         app.kubernetes.io/name: fluent-bit
