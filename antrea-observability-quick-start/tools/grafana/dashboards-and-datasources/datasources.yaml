@@ -1,36 +1,28 @@
 apiVersion: v1
-items:
-- apiVersion: v1
-  data:
-    datasources.yaml: |
-      apiVersion: v1
-      items: []
-      kind: List
-      metadata:
-  kind: ConfigMap
-  metadata:
-    labels:
-      grafana_datasource: "1"
-    name: datasources-datasource-cm
-    namespace: observability
-- apiVersion: v1
-  data:
-    loki.yaml: |-
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_datasource: "1"
+  name: loki-datasource-cm
+  namespace: observability
+data:
+  loki.yaml: |-
       apiVersion: 1
       datasources:
       - name: loki
         type: loki
         url: http://loki:3100
         access: proxy
-  kind: ConfigMap
-  metadata:
-    labels:
-      grafana_datasource: "1"
-    name: loki-datasource-cm
-    namespace: observability
-- apiVersion: v1
-  data:
-    prometheus.yaml: |-
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    grafana_datasource: "1"
+  name: prometheus-datasource-cm
+  namespace: observability
+data:
+  prometheus.yaml: |-
       apiVersion: 1
       datasources:
       - name: prometheus
@@ -38,11 +30,4 @@ items:
         url: http://prometheus-service:8080
         access: proxy
         isDefault: true
-  kind: ConfigMap
-  metadata:
-    labels:
-      grafana_datasource: "1"
-    name: prometheus-datasource-cm
-    namespace: observability
-kind: List
-metadata:
+

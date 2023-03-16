@@ -6,10 +6,10 @@ metadata:
   name: grafana
   namespace: observability
   labels:
-    helm.sh/chart: grafana-6.50.7
+    helm.sh/chart: grafana-6.52.3
     app.kubernetes.io/name: grafana
     app.kubernetes.io/instance: grafana
-    app.kubernetes.io/version: "9.3.6"
+    app.kubernetes.io/version: "9.4.3"
     app.kubernetes.io/managed-by: Helm
 spec:
   replicas: 1
@@ -26,10 +26,10 @@ spec:
         app.kubernetes.io/name: grafana
         app.kubernetes.io/instance: grafana
       annotations:
-        checksum/config: a7a0a1b36b0b920527aaa7c18bf1b6a3962583818ce0cf541b88d84eefda09a8
+        checksum/config: f2b79da5fcc5cb345ebe32acb15b71b1e718507aa939db1331796e1a4a46b658
         checksum/dashboards-json-config: 01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b
-        checksum/sc-dashboard-provider-config: 5919627f38bb5ba277b71aa5ac025a7c17192140296fcb8937d78a43c54caa74
-        checksum/secret: ae16807cdee0872a507a620eb6e96babe48eeb96bc0463ae8859e8e62515bff4
+        checksum/sc-dashboard-provider-config: 1627da31bf6336bb297a93ae406d078da0cff393ae4eb7c014ef6523f66c566d
+        checksum/secret: c07b33f0f84a9ad8353bf39b7bca17d238c6246bbb793b8813d0579dfc5f0b2b
     spec:
       
       serviceAccountName: grafana
@@ -103,7 +103,7 @@ spec:
             - name: sc-datasources-volume
               mountPath: "/etc/grafana/provisioning/datasources"
         - name: grafana
-          image: "grafana/grafana:9.3.6"
+          image: "grafana/grafana:9.4.3"
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: config
