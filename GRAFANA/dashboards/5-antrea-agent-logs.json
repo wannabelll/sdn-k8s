@@ -1,59 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "loki",
-      "label": "loki",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "loki",
-      "pluginName": "Loki"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "bargauge",
-      "name": "Bar gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "9.3.6"
-    },
-    {
-      "type": "panel",
-      "id": "logs",
-      "name": "Logs",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "loki",
-      "name": "Loki",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "piechart",
-      "name": "Pie chart",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -79,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
   "links": [
     {
       "asDropdown": false,
@@ -148,7 +92,7 @@
         },
         "showUnfilled": true
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -156,7 +100,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (nodename) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__interval]))",
+          "expr": "sum by (nodename) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__range]))",
           "legendFormat": "{{log_level}}",
           "queryType": "range",
           "refId": "A"
@@ -224,7 +168,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (log_level) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__interval]))",
+          "expr": "sum by (log_level) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__range]))",
           "legendFormat": "{{log_level}}",
           "queryType": "range",
           "refId": "A"
@@ -302,7 +246,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -310,7 +254,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum(bytes_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"}[$__interval]))",
+          "expr": "sum(bytes_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"}[$__range]))",
           "queryType": "range",
           "refId": "A"
         }
@@ -366,7 +310,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -374,7 +318,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by(agent_log_category) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__interval]))",
+          "expr": "sum by(agent_log_category) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__range]))",
           "legendFormat": "{{category}}",
           "queryType": "range",
           "refId": "A"
@@ -468,7 +412,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (agent_log_category, log_level) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\" } | json  [$__interval]))",
+          "expr": "sum by (agent_log_category, log_level) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\" } | json  [$__range]))",
           "hide": false,
           "legendFormat": "{{log_level}} {{agent_log_category}} ",
           "queryType": "range",
@@ -661,8 +605,9 @@
       "type": "logs"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 37,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "antrea_v1.10"
@@ -670,7 +615,15 @@
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "loki",
           "uid": "loki"
@@ -694,7 +647,15 @@
         "type": "query"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "loki",
           "uid": "loki"
@@ -719,7 +680,15 @@
       },
       {
         "allValue": "",
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "loki",
           "uid": "loki"
@@ -752,6 +721,6 @@
   "timezone": "",
   "title": "5.- Antrea Agent Logs",
   "uid": "6cgVcKAVz",
-  "version": 12,
+  "version": 1,
   "weekStart": ""
 }

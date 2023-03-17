@@ -1,79 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "loki",
-      "label": "loki",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "loki",
-      "pluginName": "Loki"
-    },
-    {
-      "name": "prometheus",
-      "label": "prometheus",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "prometheus",
-      "pluginName": "Prometheus"
-    }
-  ],
-  "__elements": {},
-  "__requires": [
-    {
-      "type": "panel",
-      "id": "bargauge",
-      "name": "Bar gauge",
-      "version": ""
-    },
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "9.3.6"
-    },
-    {
-      "type": "panel",
-      "id": "heatmap",
-      "name": "Heatmap",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "logs",
-      "name": "Logs",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "loki",
-      "name": "Loki",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "piechart",
-      "name": "Pie chart",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "prometheus",
-      "name": "Prometheus",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    },
-    {
-      "type": "panel",
-      "id": "timeseries",
-      "name": "Time series",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -99,7 +24,6 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": null,
   "links": [
     {
       "asDropdown": false,
@@ -176,7 +100,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by (log_level) (count_over_time({job=\"fluentbit-antrea-controller\", nodename=~\"$instance\", controller_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__interval]))",
+          "expr": "sum by (log_level) (count_over_time({job=\"fluentbit-antrea-controller\", nodename=~\"$instance\", controller_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__range]))",
           "legendFormat": "{{log_level}}",
           "queryType": "range",
           "refId": "A"
@@ -256,7 +180,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -264,7 +188,7 @@
             "uid": "loki"
           },
           "editorMode": "code",
-          "expr": "sum by(controller_log_category) (count_over_time({job=\"fluentbit-antrea-controller\", nodename=~\"$instance\", controller_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__interval]))",
+          "expr": "sum by(controller_log_category) (count_over_time({job=\"fluentbit-antrea-controller\", nodename=~\"$instance\", controller_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__range]))",
           "legendFormat": "{{category}}",
           "queryType": "range",
           "refId": "A"
@@ -443,7 +367,7 @@
         },
         "showUnfilled": false
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -545,7 +469,7 @@
           "reverse": false
         }
       },
-      "pluginVersion": "9.3.6",
+      "pluginVersion": "9.4.3",
       "targets": [
         {
           "datasource": {
@@ -818,7 +742,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "irate(antrea_controller_network_policy_sync_duration_milliseconds_sum[5m])",
+          "expr": "irate(antrea_controller_network_policy_sync_duration_milliseconds_sum[1m])",
           "hide": false,
           "legendFormat": "Network Policy Sync Duration (msec)",
           "range": true,
@@ -830,7 +754,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "irate(antrea_controller_address_group_sync_duration_milliseconds_sum[5m])",
+          "expr": "irate(antrea_controller_address_group_sync_duration_milliseconds_sum[1m])",
           "hide": false,
           "legendFormat": "Address Group Sync Duration (msec)",
           "range": true,
@@ -842,7 +766,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "rate(antrea_controller_applied_to_group_sync_duration_milliseconds_sum[5m])",
+          "expr": "rate(antrea_controller_applied_to_group_sync_duration_milliseconds_sum[1m])",
           "hide": false,
           "legendFormat": "Applied-to-Group Sync Duration (msec)",
           "range": true,
@@ -991,7 +915,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "irate(antrea_controller_network_policy_processed[5m])",
+          "expr": "irate(antrea_controller_network_policy_processed[1m])",
           "legendFormat": "Network Policy Processed",
           "range": true,
           "refId": "A"
@@ -1002,7 +926,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "irate(antrea_controller_applied_to_group_processed[5m])",
+          "expr": "irate(antrea_controller_applied_to_group_processed[1m])",
           "hide": false,
           "legendFormat": "Applied-to-Group Processed",
           "range": true,
@@ -1014,7 +938,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "irate(antrea_controller_address_group_processed[5m])",
+          "expr": "irate(antrea_controller_address_group_processed[1m])",
           "hide": false,
           "legendFormat": "Address Groups Processed",
           "range": true,
@@ -1145,7 +1069,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "irate(antrea_controller_acnp_status_updates[5m])",
+          "expr": "irate(antrea_controller_acnp_status_updates[1m])",
           "legendFormat": "ACNP Status Update",
           "range": true,
           "refId": "A"
@@ -1156,7 +1080,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "irate(antrea_controller_anp_status_updates[5m])",
+          "expr": "irate(antrea_controller_anp_status_updates[1m])",
           "hide": false,
           "legendFormat": "ANP Status Update",
           "range": true,
@@ -1213,8 +1137,9 @@
       "type": "logs"
     }
   ],
-  "refresh": false,
-  "schemaVersion": 37,
+  "refresh": "",
+  "revision": 1,
+  "schemaVersion": 38,
   "style": "dark",
   "tags": [
     "antrea_v1.10"
@@ -1222,7 +1147,15 @@
   "templating": {
     "list": [
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "prometheus",
           "uid": "prometheus"
@@ -1244,7 +1177,15 @@
         "type": "query"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "loki",
           "uid": "loki"
@@ -1268,7 +1209,15 @@
         "type": "query"
       },
       {
-        "current": {},
+        "current": {
+          "selected": false,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "datasource": {
           "type": "loki",
           "uid": "loki"
@@ -1301,6 +1250,6 @@
   "timezone": "",
   "title": "6.- Controller Metrics and Logs",
   "uid": "4XYIcFA4k",
-  "version": 14,
+  "version": 1,
   "weekStart": ""
 }
