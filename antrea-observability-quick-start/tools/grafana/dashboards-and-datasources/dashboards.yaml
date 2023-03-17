@@ -3080,19 +3080,18 @@ items:
       {\n            \"mode\": \"continuous-GrYlRd\"\n          },\n          \"displayName\":
       \"${__series.name}\",\n          \"mappings\": [],\n          \"thresholds\":
       {\n            \"mode\": \"absolute\",\n            \"steps\": [\n              {\n
-      \               \"color\": \"green\",\n                \"value\": null\n              },\n
-      \             {\n                \"color\": \"red\",\n                \"value\":
-      80\n              }\n            ]\n          }\n        },\n        \"overrides\":
-      []\n      },\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n
-      \       \"x\": 0,\n        \"y\": 27\n      },\n      \"id\": 16,\n      \"options\":
-      {\n        \"displayMode\": \"lcd\",\n        \"minVizHeight\": 10,\n        \"minVizWidth\":
-      0,\n        \"orientation\": \"horizontal\",\n        \"reduceOptions\": {\n
-      \         \"calcs\": [\n            \"lastNotNull\"\n          ],\n          \"fields\":
-      \"\",\n          \"values\": false\n        },\n        \"showUnfilled\": true\n
-      \     },\n      \"pluginVersion\": \"9.4.3\",\n      \"targets\": [\n        {\n
-      \         \"datasource\": {\n            \"type\": \"loki\",\n            \"uid\":
-      \"loki\"\n          },\n          \"editorMode\": \"code\",\n          \"expr\":
-      \"sum by(ruleName) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
+      \               \"color\": \"green\"\n              },\n              {\n                \"color\":
+      \"red\",\n                \"value\": 80\n              }\n            ]\n          }\n
+      \       },\n        \"overrides\": []\n      },\n      \"gridPos\": {\n        \"h\":
+      6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 27\n      },\n      \"id\":
+      16,\n      \"options\": {\n        \"displayMode\": \"lcd\",\n        \"minVizHeight\":
+      10,\n        \"minVizWidth\": 0,\n        \"orientation\": \"horizontal\",\n
+      \       \"reduceOptions\": {\n          \"calcs\": [\n            \"lastNotNull\"\n
+      \         ],\n          \"fields\": \"\",\n          \"values\": false\n        },\n
+      \       \"showUnfilled\": true\n      },\n      \"pluginVersion\": \"9.4.3\",\n
+      \     \"targets\": [\n        {\n          \"datasource\": {\n            \"type\":
+      \"loki\",\n            \"uid\": \"loki\"\n          },\n          \"editorMode\":
+      \"code\",\n          \"expr\": \"sum by(ruleName) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
       action=\\\"Allow\\\"} | json | __error__=`` | sourceIP =~\\\".*$sourceIP_filter\\\"
       and destinationIP =~\\\".*$destinationIP_filter\\\" [$__range]))\",\n          \"hide\":
       false,\n          \"key\": \"Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0\",\n          \"legendFormat\":
@@ -3104,19 +3103,18 @@ items:
       {\n            \"mode\": \"continuous-GrYlRd\"\n          },\n          \"displayName\":
       \"${__series.name}\",\n          \"mappings\": [],\n          \"thresholds\":
       {\n            \"mode\": \"absolute\",\n            \"steps\": [\n              {\n
-      \               \"color\": \"green\",\n                \"value\": null\n              },\n
-      \             {\n                \"color\": \"red\",\n                \"value\":
-      80\n              }\n            ]\n          }\n        },\n        \"overrides\":
-      []\n      },\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 11,\n
-      \       \"x\": 12,\n        \"y\": 27\n      },\n      \"id\": 25,\n      \"options\":
-      {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\": 10,\n        \"minVizWidth\":
-      0,\n        \"orientation\": \"horizontal\",\n        \"reduceOptions\": {\n
-      \         \"calcs\": [\n            \"lastNotNull\"\n          ],\n          \"fields\":
-      \"\",\n          \"values\": false\n        },\n        \"showUnfilled\": true\n
-      \     },\n      \"pluginVersion\": \"9.4.3\",\n      \"targets\": [\n        {\n
-      \         \"datasource\": {\n            \"type\": \"loki\",\n            \"uid\":
-      \"loki\"\n          },\n          \"editorMode\": \"code\",\n          \"expr\":
-      \"topk(5, sum by(destinationIP) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
+      \               \"color\": \"green\"\n              },\n              {\n                \"color\":
+      \"red\",\n                \"value\": 80\n              }\n            ]\n          }\n
+      \       },\n        \"overrides\": []\n      },\n      \"gridPos\": {\n        \"h\":
+      5,\n        \"w\": 11,\n        \"x\": 12,\n        \"y\": 27\n      },\n      \"id\":
+      25,\n      \"options\": {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\":
+      10,\n        \"minVizWidth\": 0,\n        \"orientation\": \"horizontal\",\n
+      \       \"reduceOptions\": {\n          \"calcs\": [\n            \"lastNotNull\"\n
+      \         ],\n          \"fields\": \"\",\n          \"values\": false\n        },\n
+      \       \"showUnfilled\": true\n      },\n      \"pluginVersion\": \"9.4.3\",\n
+      \     \"targets\": [\n        {\n          \"datasource\": {\n            \"type\":
+      \"loki\",\n            \"uid\": \"loki\"\n          },\n          \"editorMode\":
+      \"code\",\n          \"expr\": \"topk(5, sum by(destinationIP) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
       action=\\\"Allow\\\"} | json | __error__=`` | sourceIP =~\\\".*$sourceIP_filter\\\"
       and destinationIP =~\\\".*$destinationIP_filter\\\" [$__range])))\",\n          \"hide\":
       false,\n          \"key\": \"Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0\",\n          \"legendFormat\":
@@ -3131,19 +3129,19 @@ items:
       {\n          \"color\": {\n            \"mode\": \"continuous-GrYlRd\"\n          },\n
       \         \"displayName\": \"${__series.name}\",\n          \"mappings\": [],\n
       \         \"thresholds\": {\n            \"mode\": \"absolute\",\n            \"steps\":
-      [\n              {\n                \"color\": \"green\",\n                \"value\":
-      null\n              },\n              {\n                \"color\": \"red\",\n
-      \               \"value\": 80\n              }\n            ]\n          }\n
-      \       },\n        \"overrides\": []\n      },\n      \"gridPos\": {\n        \"h\":
-      5,\n        \"w\": 11,\n        \"x\": 12,\n        \"y\": 32\n      },\n      \"id\":
-      26,\n      \"options\": {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\":
-      10,\n        \"minVizWidth\": 0,\n        \"orientation\": \"horizontal\",\n
-      \       \"reduceOptions\": {\n          \"calcs\": [\n            \"lastNotNull\"\n
-      \         ],\n          \"fields\": \"\",\n          \"values\": false\n        },\n
-      \       \"showUnfilled\": true\n      },\n      \"pluginVersion\": \"9.4.3\",\n
-      \     \"targets\": [\n        {\n          \"datasource\": {\n            \"type\":
-      \"loki\",\n            \"uid\": \"loki\"\n          },\n          \"editorMode\":
-      \"code\",\n          \"expr\": \"topk(2, sum by (sourceIP) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
+      [\n              {\n                \"color\": \"green\"\n              },\n
+      \             {\n                \"color\": \"red\",\n                \"value\":
+      80\n              }\n            ]\n          }\n        },\n        \"overrides\":
+      []\n      },\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 11,\n
+      \       \"x\": 12,\n        \"y\": 32\n      },\n      \"id\": 26,\n      \"options\":
+      {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\": 10,\n        \"minVizWidth\":
+      0,\n        \"orientation\": \"horizontal\",\n        \"reduceOptions\": {\n
+      \         \"calcs\": [\n            \"lastNotNull\"\n          ],\n          \"fields\":
+      \"\",\n          \"values\": false\n        },\n        \"showUnfilled\": true\n
+      \     },\n      \"pluginVersion\": \"9.4.3\",\n      \"targets\": [\n        {\n
+      \         \"datasource\": {\n            \"type\": \"loki\",\n            \"uid\":
+      \"loki\"\n          },\n          \"editorMode\": \"code\",\n          \"expr\":
+      \"topk(2, sum by (sourceIP) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
       action=\\\"Allow\\\"} | json | __error__=`` | sourceIP =~\\\".*$sourceIP_filter\\\"
       and destinationIP =~\\\".*$destinationIP_filter\\\" [$__range])))\",\n          \"hide\":
       false,\n          \"key\": \"Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0\",\n          \"legendFormat\":
@@ -3184,23 +3182,22 @@ items:
       {\n          \"color\": {\n            \"mode\": \"continuous-GrYlRd\"\n          },\n
       \         \"displayName\": \"${__series.name}\",\n          \"mappings\": [],\n
       \         \"thresholds\": {\n            \"mode\": \"absolute\",\n            \"steps\":
-      [\n              {\n                \"color\": \"green\",\n                \"value\":
-      null\n              },\n              {\n                \"color\": \"red\",\n
-      \               \"value\": 80\n              }\n            ]\n          }\n
-      \       },\n        \"overrides\": []\n      },\n      \"gridPos\": {\n        \"h\":
-      5,\n        \"w\": 11,\n        \"x\": 12,\n        \"y\": 37\n      },\n      \"id\":
-      21,\n      \"options\": {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\":
-      10,\n        \"minVizWidth\": 0,\n        \"orientation\": \"horizontal\",\n
-      \       \"reduceOptions\": {\n          \"calcs\": [\n            \"lastNotNull\"\n
-      \         ],\n          \"fields\": \"\",\n          \"values\": false\n        },\n
-      \       \"showUnfilled\": true\n      },\n      \"pluginVersion\": \"9.4.3\",\n
-      \     \"targets\": [\n        {\n          \"datasource\": {\n            \"type\":
-      \"loki\",\n            \"uid\": \"loki\"\n          },\n          \"editorMode\":
-      \"code\",\n          \"expr\": \"topk(2, sum by(protocol, sourceIP, destinationIP,
-      destinationPort) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\", action=\\\"Allow\\\"}
-      | json | __error__=`` | sourceIP =~\\\".*$sourceIP_filter\\\" and destinationIP
-      =~\\\".*$destinationIP_filter\\\"[$__range])))\",\n          \"hide\": false,\n
-      \         \"key\": \"Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0\",\n          \"legendFormat\":
+      [\n              {\n                \"color\": \"green\"\n              },\n
+      \             {\n                \"color\": \"red\",\n                \"value\":
+      80\n              }\n            ]\n          }\n        },\n        \"overrides\":
+      []\n      },\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 11,\n
+      \       \"x\": 12,\n        \"y\": 37\n      },\n      \"id\": 21,\n      \"options\":
+      {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\": 10,\n        \"minVizWidth\":
+      0,\n        \"orientation\": \"horizontal\",\n        \"reduceOptions\": {\n
+      \         \"calcs\": [\n            \"lastNotNull\"\n          ],\n          \"fields\":
+      \"\",\n          \"values\": false\n        },\n        \"showUnfilled\": true\n
+      \     },\n      \"pluginVersion\": \"9.4.3\",\n      \"targets\": [\n        {\n
+      \         \"datasource\": {\n            \"type\": \"loki\",\n            \"uid\":
+      \"loki\"\n          },\n          \"editorMode\": \"code\",\n          \"expr\":
+      \"topk(2, sum by(protocol, sourceIP, destinationIP, destinationPort) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
+      action=\\\"Allow\\\"} | json | __error__=`` | sourceIP =~\\\".*$sourceIP_filter\\\"
+      and destinationIP =~\\\".*$destinationIP_filter\\\"[$__range])))\",\n          \"hide\":
+      false,\n          \"key\": \"Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0\",\n          \"legendFormat\":
       \"{{sourceIP}} - {{destinationIP}} {{protocol}} {{destinationPort}}\",\n          \"queryType\":
       \"range\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"title\":
       \"Top Allowed Conversations\",\n      \"transformations\": [\n        {\n          \"id\":
@@ -3216,19 +3213,18 @@ items:
       {\n            \"mode\": \"continuous-GrYlRd\"\n          },\n          \"displayName\":
       \"${__series.name}\",\n          \"mappings\": [],\n          \"thresholds\":
       {\n            \"mode\": \"absolute\",\n            \"steps\": [\n              {\n
-      \               \"color\": \"green\",\n                \"value\": null\n              },\n
-      \             {\n                \"color\": \"red\",\n                \"value\":
-      80\n              }\n            ]\n          }\n        },\n        \"overrides\":
-      []\n      },\n      \"gridPos\": {\n        \"h\": 6,\n        \"w\": 12,\n
-      \       \"x\": 0,\n        \"y\": 43\n      },\n      \"id\": 17,\n      \"options\":
-      {\n        \"displayMode\": \"lcd\",\n        \"minVizHeight\": 10,\n        \"minVizWidth\":
-      0,\n        \"orientation\": \"horizontal\",\n        \"reduceOptions\": {\n
-      \         \"calcs\": [\n            \"lastNotNull\"\n          ],\n          \"fields\":
-      \"\",\n          \"values\": false\n        },\n        \"showUnfilled\": true\n
-      \     },\n      \"pluginVersion\": \"9.4.3\",\n      \"targets\": [\n        {\n
-      \         \"datasource\": {\n            \"type\": \"loki\",\n            \"uid\":
-      \"loki\"\n          },\n          \"editorMode\": \"code\",\n          \"expr\":
-      \"topk(2, sum by(ruleName) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
+      \               \"color\": \"green\"\n              },\n              {\n                \"color\":
+      \"red\",\n                \"value\": 80\n              }\n            ]\n          }\n
+      \       },\n        \"overrides\": []\n      },\n      \"gridPos\": {\n        \"h\":
+      6,\n        \"w\": 12,\n        \"x\": 0,\n        \"y\": 43\n      },\n      \"id\":
+      17,\n      \"options\": {\n        \"displayMode\": \"lcd\",\n        \"minVizHeight\":
+      10,\n        \"minVizWidth\": 0,\n        \"orientation\": \"horizontal\",\n
+      \       \"reduceOptions\": {\n          \"calcs\": [\n            \"lastNotNull\"\n
+      \         ],\n          \"fields\": \"\",\n          \"values\": false\n        },\n
+      \       \"showUnfilled\": true\n      },\n      \"pluginVersion\": \"9.4.3\",\n
+      \     \"targets\": [\n        {\n          \"datasource\": {\n            \"type\":
+      \"loki\",\n            \"uid\": \"loki\"\n          },\n          \"editorMode\":
+      \"code\",\n          \"expr\": \"topk(2, sum by(ruleName) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
       action=~\\\"Reject|Drop\\\"} | json | __error__=`` | sourceIP =~\\\".*$sourceIP_filter\\\"
       and destinationIP =~\\\".*$destinationIP_filter\\\" [$__range])))\",\n          \"hide\":
       false,\n          \"key\": \"Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0\",\n          \"legendFormat\":
@@ -3240,19 +3236,18 @@ items:
       {\n            \"mode\": \"continuous-GrYlRd\"\n          },\n          \"displayName\":
       \"${__series.name}\",\n          \"mappings\": [],\n          \"thresholds\":
       {\n            \"mode\": \"absolute\",\n            \"steps\": [\n              {\n
-      \               \"color\": \"green\",\n                \"value\": null\n              },\n
-      \             {\n                \"color\": \"red\",\n                \"value\":
-      80\n              }\n            ]\n          }\n        },\n        \"overrides\":
-      []\n      },\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 11,\n
-      \       \"x\": 12,\n        \"y\": 43\n      },\n      \"id\": 19,\n      \"options\":
-      {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\": 10,\n        \"minVizWidth\":
-      0,\n        \"orientation\": \"horizontal\",\n        \"reduceOptions\": {\n
-      \         \"calcs\": [\n            \"lastNotNull\"\n          ],\n          \"fields\":
-      \"\",\n          \"values\": false\n        },\n        \"showUnfilled\": true\n
-      \     },\n      \"pluginVersion\": \"9.4.3\",\n      \"targets\": [\n        {\n
-      \         \"datasource\": {\n            \"type\": \"loki\",\n            \"uid\":
-      \"loki\"\n          },\n          \"editorMode\": \"code\",\n          \"expr\":
-      \"topk(2, sum by (sourceIP) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
+      \               \"color\": \"green\"\n              },\n              {\n                \"color\":
+      \"red\",\n                \"value\": 80\n              }\n            ]\n          }\n
+      \       },\n        \"overrides\": []\n      },\n      \"gridPos\": {\n        \"h\":
+      5,\n        \"w\": 11,\n        \"x\": 12,\n        \"y\": 43\n      },\n      \"id\":
+      19,\n      \"options\": {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\":
+      10,\n        \"minVizWidth\": 0,\n        \"orientation\": \"horizontal\",\n
+      \       \"reduceOptions\": {\n          \"calcs\": [\n            \"lastNotNull\"\n
+      \         ],\n          \"fields\": \"\",\n          \"values\": false\n        },\n
+      \       \"showUnfilled\": true\n      },\n      \"pluginVersion\": \"9.4.3\",\n
+      \     \"targets\": [\n        {\n          \"datasource\": {\n            \"type\":
+      \"loki\",\n            \"uid\": \"loki\"\n          },\n          \"editorMode\":
+      \"code\",\n          \"expr\": \"topk(2, sum by (sourceIP) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
       action=~\\\"Drop|Reject\\\"} | json | __error__=`` | sourceIP =~\\\".*$sourceIP_filter\\\"
       and destinationIP =~\\\".*$destinationIP_filter\\\" [$__range])))\",\n          \"hide\":
       false,\n          \"key\": \"Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0\",\n          \"legendFormat\":
@@ -3267,19 +3262,18 @@ items:
       {\n            \"mode\": \"continuous-RdYlGr\"\n          },\n          \"displayName\":
       \"${__series.name}\",\n          \"mappings\": [],\n          \"thresholds\":
       {\n            \"mode\": \"absolute\",\n            \"steps\": [\n              {\n
-      \               \"color\": \"green\",\n                \"value\": null\n              },\n
-      \             {\n                \"color\": \"red\",\n                \"value\":
-      80\n              }\n            ]\n          }\n        },\n        \"overrides\":
-      []\n      },\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 11,\n
-      \       \"x\": 12,\n        \"y\": 48\n      },\n      \"id\": 18,\n      \"options\":
-      {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\": 10,\n        \"minVizWidth\":
-      0,\n        \"orientation\": \"horizontal\",\n        \"reduceOptions\": {\n
-      \         \"calcs\": [\n            \"lastNotNull\"\n          ],\n          \"fields\":
-      \"\",\n          \"values\": false\n        },\n        \"showUnfilled\": true\n
-      \     },\n      \"pluginVersion\": \"9.4.3\",\n      \"targets\": [\n        {\n
-      \         \"datasource\": {\n            \"type\": \"loki\",\n            \"uid\":
-      \"loki\"\n          },\n          \"editorMode\": \"code\",\n          \"expr\":
-      \"topk(2, sum by (destinationIP) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
+      \               \"color\": \"green\"\n              },\n              {\n                \"color\":
+      \"red\",\n                \"value\": 80\n              }\n            ]\n          }\n
+      \       },\n        \"overrides\": []\n      },\n      \"gridPos\": {\n        \"h\":
+      5,\n        \"w\": 11,\n        \"x\": 12,\n        \"y\": 48\n      },\n      \"id\":
+      18,\n      \"options\": {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\":
+      10,\n        \"minVizWidth\": 0,\n        \"orientation\": \"horizontal\",\n
+      \       \"reduceOptions\": {\n          \"calcs\": [\n            \"lastNotNull\"\n
+      \         ],\n          \"fields\": \"\",\n          \"values\": false\n        },\n
+      \       \"showUnfilled\": true\n      },\n      \"pluginVersion\": \"9.4.3\",\n
+      \     \"targets\": [\n        {\n          \"datasource\": {\n            \"type\":
+      \"loki\",\n            \"uid\": \"loki\"\n          },\n          \"editorMode\":
+      \"code\",\n          \"expr\": \"topk(2, sum by (destinationIP) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
       action=~\\\"Drop|Reject\\\"} | json | __error__=`` | sourceIP =~\\\".*$sourceIP_filter\\\"
       and destinationIP =~\\\".*$destinationIP_filter\\\" [$__range])))\",\n          \"hide\":
       false,\n          \"key\": \"Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0\",\n          \"legendFormat\":
@@ -3321,23 +3315,22 @@ items:
       {\n          \"color\": {\n            \"mode\": \"continuous-GrYlRd\"\n          },\n
       \         \"displayName\": \"${__series.name}\",\n          \"mappings\": [],\n
       \         \"thresholds\": {\n            \"mode\": \"absolute\",\n            \"steps\":
-      [\n              {\n                \"color\": \"green\",\n                \"value\":
-      null\n              },\n              {\n                \"color\": \"red\",\n
-      \               \"value\": 80\n              }\n            ]\n          }\n
-      \       },\n        \"overrides\": []\n      },\n      \"gridPos\": {\n        \"h\":
-      5,\n        \"w\": 11,\n        \"x\": 12,\n        \"y\": 53\n      },\n      \"id\":
-      27,\n      \"options\": {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\":
-      10,\n        \"minVizWidth\": 0,\n        \"orientation\": \"horizontal\",\n
-      \       \"reduceOptions\": {\n          \"calcs\": [\n            \"lastNotNull\"\n
-      \         ],\n          \"fields\": \"\",\n          \"values\": false\n        },\n
-      \       \"showUnfilled\": true\n      },\n      \"pluginVersion\": \"9.4.3\",\n
-      \     \"targets\": [\n        {\n          \"datasource\": {\n            \"type\":
-      \"loki\",\n            \"uid\": \"loki\"\n          },\n          \"editorMode\":
-      \"code\",\n          \"expr\": \"topk(2, sum by (protocol, sourceIP, destinationIP,
-      destinationPort) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\", action=~\\\"Drop|Reject\\\"}
-      | json | __error__=`` | sourceIP =~\\\".*$sourceIP_filter\\\" and destinationIP
-      =~\\\".*$destinationIP_filter\\\" [$__range])))\",\n          \"hide\": false,\n
-      \         \"key\": \"Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0\",\n          \"legendFormat\":
+      [\n              {\n                \"color\": \"green\"\n              },\n
+      \             {\n                \"color\": \"red\",\n                \"value\":
+      80\n              }\n            ]\n          }\n        },\n        \"overrides\":
+      []\n      },\n      \"gridPos\": {\n        \"h\": 5,\n        \"w\": 11,\n
+      \       \"x\": 12,\n        \"y\": 53\n      },\n      \"id\": 27,\n      \"options\":
+      {\n        \"displayMode\": \"gradient\",\n        \"minVizHeight\": 10,\n        \"minVizWidth\":
+      0,\n        \"orientation\": \"horizontal\",\n        \"reduceOptions\": {\n
+      \         \"calcs\": [\n            \"lastNotNull\"\n          ],\n          \"fields\":
+      \"\",\n          \"values\": false\n        },\n        \"showUnfilled\": true\n
+      \     },\n      \"pluginVersion\": \"9.4.3\",\n      \"targets\": [\n        {\n
+      \         \"datasource\": {\n            \"type\": \"loki\",\n            \"uid\":
+      \"loki\"\n          },\n          \"editorMode\": \"code\",\n          \"expr\":
+      \"topk(2, sum by (protocol, sourceIP, destinationIP, destinationPort) (count_over_time({job=\\\"fluentbit-antrea-netpolicy\\\",
+      action=~\\\"Drop|Reject\\\"} | json | __error__=`` | sourceIP =~\\\".*$sourceIP_filter\\\"
+      and destinationIP =~\\\".*$destinationIP_filter\\\" [$__range])))\",\n          \"hide\":
+      false,\n          \"key\": \"Q-5d318bbe-e13a-4cae-b47f-136f27a234e2-0\",\n          \"legendFormat\":
       \"{{sourceIP}} - {{destinationIP}} {{protocol}} {{destinationPort}}\",\n          \"queryType\":
       \"range\",\n          \"refId\": \"A\"\n        }\n      ],\n      \"title\":
       \"Top Denied Conversations\",\n      \"transformations\": [\n        {\n          \"id\":
@@ -3367,21 +3360,21 @@ items:
       \"\",\n          \"type\": 1\n        },\n        \"refresh\": 1,\n        \"regex\":
       \"\",\n        \"skipUrlSync\": false,\n        \"sort\": 0,\n        \"type\":
       \"query\"\n      },\n      {\n        \"current\": {\n          \"selected\":
-      false,\n          \"text\": \".180\",\n          \"value\": \".180\"\n        },\n
-      \       \"hide\": 0,\n        \"label\": \"src_IP\",\n        \"name\": \"sourceIP_filter\",\n
-      \       \"options\": [\n          {\n            \"selected\": true,\n            \"text\":
-      \".180\",\n            \"value\": \".180\"\n          }\n        ],\n        \"query\":
-      \".180\",\n        \"skipUrlSync\": false,\n        \"type\": \"textbox\"\n
-      \     },\n      {\n        \"current\": {\n          \"selected\": false,\n
-      \         \"text\": \"\",\n          \"value\": \"\"\n        },\n        \"hide\":
-      0,\n        \"label\": \"dest_IP\",\n        \"name\": \"destinationIP_filter\",\n
+      false,\n          \"text\": \"\",\n          \"value\": \"\"\n        },\n        \"hide\":
+      0,\n        \"label\": \"src_IP\",\n        \"name\": \"sourceIP_filter\",\n
       \       \"options\": [\n          {\n            \"selected\": true,\n            \"text\":
       \"\",\n            \"value\": \"\"\n          }\n        ],\n        \"query\":
-      \"\",\n        \"skipUrlSync\": false,\n        \"type\": \"textbox\"\n      }\n
-      \   ]\n  },\n  \"time\": {\n    \"from\": \"now-3h\",\n    \"to\": \"now\"\n
-      \ },\n  \"timepicker\": {},\n  \"timezone\": \"\",\n  \"title\": \"4.- Agent
-      Network Policy Metrics and Logs\",\n  \"uid\": \"ICIWcK0Vz\",\n  \"version\":
-      1,\n  \"weekStart\": \"\"\n}"
+      \"\",\n        \"skipUrlSync\": false,\n        \"type\": \"textbox\"\n      },\n
+      \     {\n        \"current\": {\n          \"selected\": false,\n          \"text\":
+      \"\",\n          \"value\": \"\"\n        },\n        \"hide\": 0,\n        \"label\":
+      \"dest_IP\",\n        \"name\": \"destinationIP_filter\",\n        \"options\":
+      [\n          {\n            \"selected\": true,\n            \"text\": \"\",\n
+      \           \"value\": \"\"\n          }\n        ],\n        \"query\": \"\",\n
+      \       \"skipUrlSync\": false,\n        \"type\": \"textbox\"\n      }\n    ]\n
+      \ },\n  \"time\": {\n    \"from\": \"now-1h\",\n    \"to\": \"now\"\n  },\n
+      \ \"timepicker\": {},\n  \"timezone\": \"\",\n  \"title\": \"4.- Agent Network
+      Policy Metrics and Logs\",\n  \"uid\": \"ICIWcK0Vz\",\n  \"version\": 1,\n  \"weekStart\":
+      \"\"\n}"
   kind: ConfigMap
   metadata:
     labels:
@@ -3392,61 +3385,6 @@ items:
   data:
     5-antrea-agent-logs.json: |-
       {
-        "__inputs": [
-          {
-            "name": "loki",
-            "label": "loki",
-            "description": "",
-            "type": "datasource",
-            "pluginId": "loki",
-            "pluginName": "Loki"
-          }
-        ],
-        "__elements": {},
-        "__requires": [
-          {
-            "type": "panel",
-            "id": "bargauge",
-            "name": "Bar gauge",
-            "version": ""
-          },
-          {
-            "type": "grafana",
-            "id": "grafana",
-            "name": "Grafana",
-            "version": "9.3.6"
-          },
-          {
-            "type": "panel",
-            "id": "logs",
-            "name": "Logs",
-            "version": ""
-          },
-          {
-            "type": "datasource",
-            "id": "loki",
-            "name": "Loki",
-            "version": "1.0.0"
-          },
-          {
-            "type": "panel",
-            "id": "piechart",
-            "name": "Pie chart",
-            "version": ""
-          },
-          {
-            "type": "panel",
-            "id": "stat",
-            "name": "Stat",
-            "version": ""
-          },
-          {
-            "type": "panel",
-            "id": "timeseries",
-            "name": "Time series",
-            "version": ""
-          }
-        ],
         "annotations": {
           "list": [
             {
@@ -3472,7 +3410,6 @@ items:
         "editable": true,
         "fiscalYearStartMonth": 0,
         "graphTooltip": 0,
-        "id": null,
         "links": [
           {
             "asDropdown": false,
@@ -3541,7 +3478,7 @@ items:
               },
               "showUnfilled": true
             },
-            "pluginVersion": "9.3.6",
+            "pluginVersion": "9.4.3",
             "targets": [
               {
                 "datasource": {
@@ -3549,7 +3486,7 @@ items:
                   "uid": "loki"
                 },
                 "editorMode": "code",
-                "expr": "sum by (nodename) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__interval]))",
+                "expr": "sum by (nodename) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__range]))",
                 "legendFormat": "{{log_level}}",
                 "queryType": "range",
                 "refId": "A"
@@ -3617,7 +3554,7 @@ items:
                   "uid": "loki"
                 },
                 "editorMode": "code",
-                "expr": "sum by (log_level) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__interval]))",
+                "expr": "sum by (log_level) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__range]))",
                 "legendFormat": "{{log_level}}",
                 "queryType": "range",
                 "refId": "A"
@@ -3695,7 +3632,7 @@ items:
               },
               "textMode": "auto"
             },
-            "pluginVersion": "9.3.6",
+            "pluginVersion": "9.4.3",
             "targets": [
               {
                 "datasource": {
@@ -3703,7 +3640,7 @@ items:
                   "uid": "loki"
                 },
                 "editorMode": "code",
-                "expr": "sum(bytes_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"}[$__interval]))",
+                "expr": "sum(bytes_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"}[$__range]))",
                 "queryType": "range",
                 "refId": "A"
               }
@@ -3759,7 +3696,7 @@ items:
               },
               "textMode": "auto"
             },
-            "pluginVersion": "9.3.6",
+            "pluginVersion": "9.4.3",
             "targets": [
               {
                 "datasource": {
@@ -3767,7 +3704,7 @@ items:
                   "uid": "loki"
                 },
                 "editorMode": "code",
-                "expr": "sum by(agent_log_category) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__interval]))",
+                "expr": "sum by(agent_log_category) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__range]))",
                 "legendFormat": "{{category}}",
                 "queryType": "range",
                 "refId": "A"
@@ -3861,7 +3798,7 @@ items:
                   "uid": "loki"
                 },
                 "editorMode": "code",
-                "expr": "sum by (agent_log_category, log_level) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\" } | json  [$__interval]))",
+                "expr": "sum by (agent_log_category, log_level) (count_over_time({job=\"fluentbit-antrea\", nodename=~\"$instance\", agent_log_category=~\"$log_category\", log_level=~\"$log_level\" } | json  [$__range]))",
                 "hide": false,
                 "legendFormat": "{{log_level}} {{agent_log_category}} ",
                 "queryType": "range",
@@ -4054,8 +3991,9 @@ items:
             "type": "logs"
           }
         ],
-        "refresh": false,
-        "schemaVersion": 37,
+        "refresh": "",
+        "revision": 1,
+        "schemaVersion": 38,
         "style": "dark",
         "tags": [
           "antrea_v1.10"
@@ -4063,7 +4001,15 @@ items:
         "templating": {
           "list": [
             {
-              "current": {},
+              "current": {
+                "selected": false,
+                "text": [
+                  "All"
+                ],
+                "value": [
+                  "$__all"
+                ]
+              },
               "datasource": {
                 "type": "loki",
                 "uid": "loki"
@@ -4087,7 +4033,15 @@ items:
               "type": "query"
             },
             {
-              "current": {},
+              "current": {
+                "selected": false,
+                "text": [
+                  "All"
+                ],
+                "value": [
+                  "$__all"
+                ]
+              },
               "datasource": {
                 "type": "loki",
                 "uid": "loki"
@@ -4112,7 +4066,15 @@ items:
             },
             {
               "allValue": "",
-              "current": {},
+              "current": {
+                "selected": false,
+                "text": [
+                  "All"
+                ],
+                "value": [
+                  "$__all"
+                ]
+              },
               "datasource": {
                 "type": "loki",
                 "uid": "loki"
@@ -4145,7 +4107,7 @@ items:
         "timezone": "",
         "title": "5.- Antrea Agent Logs",
         "uid": "6cgVcKAVz",
-        "version": 12,
+        "version": 1,
         "weekStart": ""
       }
   kind: ConfigMap
@@ -4158,81 +4120,6 @@ items:
   data:
     6-controller-metrics-and-logs.json: |-
       {
-        "__inputs": [
-          {
-            "name": "loki",
-            "label": "loki",
-            "description": "",
-            "type": "datasource",
-            "pluginId": "loki",
-            "pluginName": "Loki"
-          },
-          {
-            "name": "prometheus",
-            "label": "prometheus",
-            "description": "",
-            "type": "datasource",
-            "pluginId": "prometheus",
-            "pluginName": "Prometheus"
-          }
-        ],
-        "__elements": {},
-        "__requires": [
-          {
-            "type": "panel",
-            "id": "bargauge",
-            "name": "Bar gauge",
-            "version": ""
-          },
-          {
-            "type": "grafana",
-            "id": "grafana",
-            "name": "Grafana",
-            "version": "9.3.6"
-          },
-          {
-            "type": "panel",
-            "id": "heatmap",
-            "name": "Heatmap",
-            "version": ""
-          },
-          {
-            "type": "panel",
-            "id": "logs",
-            "name": "Logs",
-            "version": ""
-          },
-          {
-            "type": "datasource",
-            "id": "loki",
-            "name": "Loki",
-            "version": "1.0.0"
-          },
-          {
-            "type": "panel",
-            "id": "piechart",
-            "name": "Pie chart",
-            "version": ""
-          },
-          {
-            "type": "datasource",
-            "id": "prometheus",
-            "name": "Prometheus",
-            "version": "1.0.0"
-          },
-          {
-            "type": "panel",
-            "id": "stat",
-            "name": "Stat",
-            "version": ""
-          },
-          {
-            "type": "panel",
-            "id": "timeseries",
-            "name": "Time series",
-            "version": ""
-          }
-        ],
         "annotations": {
           "list": [
             {
@@ -4258,7 +4145,6 @@ items:
         "editable": true,
         "fiscalYearStartMonth": 0,
         "graphTooltip": 0,
-        "id": null,
         "links": [
           {
             "asDropdown": false,
@@ -4335,7 +4221,7 @@ items:
                   "uid": "loki"
                 },
                 "editorMode": "code",
-                "expr": "sum by (log_level) (count_over_time({job=\"fluentbit-antrea-controller\", nodename=~\"$instance\", controller_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__interval]))",
+                "expr": "sum by (log_level) (count_over_time({job=\"fluentbit-antrea-controller\", nodename=~\"$instance\", controller_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__range]))",
                 "legendFormat": "{{log_level}}",
                 "queryType": "range",
                 "refId": "A"
@@ -4415,7 +4301,7 @@ items:
               },
               "textMode": "auto"
             },
-            "pluginVersion": "9.3.6",
+            "pluginVersion": "9.4.3",
             "targets": [
               {
                 "datasource": {
@@ -4423,7 +4309,7 @@ items:
                   "uid": "loki"
                 },
                 "editorMode": "code",
-                "expr": "sum by(controller_log_category) (count_over_time({job=\"fluentbit-antrea-controller\", nodename=~\"$instance\", controller_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__interval]))",
+                "expr": "sum by(controller_log_category) (count_over_time({job=\"fluentbit-antrea-controller\", nodename=~\"$instance\", controller_log_category=~\"$log_category\", log_level=~\"$log_level\"} [$__range]))",
                 "legendFormat": "{{category}}",
                 "queryType": "range",
                 "refId": "A"
@@ -4602,7 +4488,7 @@ items:
               },
               "showUnfilled": false
             },
-            "pluginVersion": "9.3.6",
+            "pluginVersion": "9.4.3",
             "targets": [
               {
                 "datasource": {
@@ -4704,7 +4590,7 @@ items:
                 "reverse": false
               }
             },
-            "pluginVersion": "9.3.6",
+            "pluginVersion": "9.4.3",
             "targets": [
               {
                 "datasource": {
@@ -4977,7 +4863,7 @@ items:
                   "uid": "prometheus"
                 },
                 "editorMode": "code",
-                "expr": "irate(antrea_controller_network_policy_sync_duration_milliseconds_sum[5m])",
+                "expr": "irate(antrea_controller_network_policy_sync_duration_milliseconds_sum[1m])",
                 "hide": false,
                 "legendFormat": "Network Policy Sync Duration (msec)",
                 "range": true,
@@ -4989,7 +4875,7 @@ items:
                   "uid": "prometheus"
                 },
                 "editorMode": "code",
-                "expr": "irate(antrea_controller_address_group_sync_duration_milliseconds_sum[5m])",
+                "expr": "irate(antrea_controller_address_group_sync_duration_milliseconds_sum[1m])",
                 "hide": false,
                 "legendFormat": "Address Group Sync Duration (msec)",
                 "range": true,
@@ -5001,7 +4887,7 @@ items:
                   "uid": "prometheus"
                 },
                 "editorMode": "code",
-                "expr": "rate(antrea_controller_applied_to_group_sync_duration_milliseconds_sum[5m])",
+                "expr": "rate(antrea_controller_applied_to_group_sync_duration_milliseconds_sum[1m])",
                 "hide": false,
                 "legendFormat": "Applied-to-Group Sync Duration (msec)",
                 "range": true,
@@ -5150,7 +5036,7 @@ items:
                   "uid": "prometheus"
                 },
                 "editorMode": "code",
-                "expr": "irate(antrea_controller_network_policy_processed[5m])",
+                "expr": "irate(antrea_controller_network_policy_processed[1m])",
                 "legendFormat": "Network Policy Processed",
                 "range": true,
                 "refId": "A"
@@ -5161,7 +5047,7 @@ items:
                   "uid": "prometheus"
                 },
                 "editorMode": "code",
-                "expr": "irate(antrea_controller_applied_to_group_processed[5m])",
+                "expr": "irate(antrea_controller_applied_to_group_processed[1m])",
                 "hide": false,
                 "legendFormat": "Applied-to-Group Processed",
                 "range": true,
@@ -5173,7 +5059,7 @@ items:
                   "uid": "prometheus"
                 },
                 "editorMode": "code",
-                "expr": "irate(antrea_controller_address_group_processed[5m])",
+                "expr": "irate(antrea_controller_address_group_processed[1m])",
                 "hide": false,
                 "legendFormat": "Address Groups Processed",
                 "range": true,
@@ -5304,7 +5190,7 @@ items:
                   "uid": "prometheus"
                 },
                 "editorMode": "code",
-                "expr": "irate(antrea_controller_acnp_status_updates[5m])",
+                "expr": "irate(antrea_controller_acnp_status_updates[1m])",
                 "legendFormat": "ACNP Status Update",
                 "range": true,
                 "refId": "A"
@@ -5315,7 +5201,7 @@ items:
                   "uid": "prometheus"
                 },
                 "editorMode": "code",
-                "expr": "irate(antrea_controller_anp_status_updates[5m])",
+                "expr": "irate(antrea_controller_anp_status_updates[1m])",
                 "hide": false,
                 "legendFormat": "ANP Status Update",
                 "range": true,
@@ -5372,8 +5258,9 @@ items:
             "type": "logs"
           }
         ],
-        "refresh": false,
-        "schemaVersion": 37,
+        "refresh": "",
+        "revision": 1,
+        "schemaVersion": 38,
         "style": "dark",
         "tags": [
           "antrea_v1.10"
@@ -5381,7 +5268,15 @@ items:
         "templating": {
           "list": [
             {
-              "current": {},
+              "current": {
+                "selected": false,
+                "text": [
+                  "All"
+                ],
+                "value": [
+                  "$__all"
+                ]
+              },
               "datasource": {
                 "type": "prometheus",
                 "uid": "prometheus"
@@ -5403,7 +5298,15 @@ items:
               "type": "query"
             },
             {
-              "current": {},
+              "current": {
+                "selected": false,
+                "text": [
+                  "All"
+                ],
+                "value": [
+                  "$__all"
+                ]
+              },
               "datasource": {
                 "type": "loki",
                 "uid": "loki"
@@ -5427,7 +5330,15 @@ items:
               "type": "query"
             },
             {
-              "current": {},
+              "current": {
+                "selected": false,
+                "text": [
+                  "All"
+                ],
+                "value": [
+                  "$__all"
+                ]
+              },
               "datasource": {
                 "type": "loki",
                 "uid": "loki"
@@ -5460,7 +5371,7 @@ items:
         "timezone": "",
         "title": "6.- Controller Metrics and Logs",
         "uid": "4XYIcFA4k",
-        "version": 14,
+        "version": 1,
         "weekStart": ""
       }
   kind: ConfigMap

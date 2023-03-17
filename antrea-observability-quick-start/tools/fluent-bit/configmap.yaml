@@ -22,7 +22,8 @@ data:
     [PARSER]    
         Name ovs
         Format regex
-        Regex ^((?<date>[^ ].*)\|(?<log_code>.*)\|(?<ovs_category>.*)\|(?<ovs_log_level>.*))\|(?<message>\w+\s.*$)
+        Regex ^((?<date>[^ ].*)\|(?<logcode>.*)\|(?<categ>.*)\|(?<category>.*))\|(?<message>\w*[@]*.*[\s].*$)
+  
   fluent-bit.conf: |
     [SERVICE]
         Daemon Off
