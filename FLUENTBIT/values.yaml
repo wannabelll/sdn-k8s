@@ -117,4 +117,4 @@ config:
     [PARSER]    
         Name ovs
         Format regex
-        Regex ^((?<date>[^ ].*)\|(?<logcode>.*)\|(?<categ>.*)\|(?<category>.*))\|(?<message>\w*[@]*.*[\s].*$)
+        Regex ^((?<date>[^ ].*)\|(?<logcode>.*)\|(?<ovs_category>.*)\|(?<ovs_log_level>.*))\|(?<message>\w*[@]*.*[\s].*$)
