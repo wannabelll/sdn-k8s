@@ -1,8 +1,7 @@
 #!/bin/bash
 # Populate metrics and logs by creating some dummy objects
 # 
-# by jhasensio
-#
+
 
 clear
 
