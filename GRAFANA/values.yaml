@@ -7,7 +7,7 @@ persistence:
     - ReadWriteOnce
   size: 10Gi
   # annotations: {}
-# Enable Sidecars containers for dashboards and datasource import via configmaps
+#  Enable Sidecars containers for dashboards and datasource import via configmaps
 sidecar:
   dashboards:
     enabled: true

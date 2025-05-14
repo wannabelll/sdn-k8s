@@ -1,4 +1,4 @@
-# kind -- DaemonSet or Deployment
+# kind --  DaemonSet or Deployment
 kind: DaemonSet
 
 env: 

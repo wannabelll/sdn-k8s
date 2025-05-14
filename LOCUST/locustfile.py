@@ -3,7 +3,7 @@ from locust import HttpUser, task, SequentialTaskSet, between
 import random
 import logging
 
-# List of users (pre-loaded into ACME Fitness shop)
+#  List of users (pre-loaded into ACME Fitness shop)
 users = ["eric", "phoebe", "dwight", "han", "elaine", "walter"]
 
 # GuestUserBrowsing simulates traffic for a Guest User (Not logged in)

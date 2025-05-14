@@ -5,3 +5,4 @@ datasources:
   uid: loki
   url: http://loki-gateway.loki.svc.cluster.local:80
   access: proxy
+# url

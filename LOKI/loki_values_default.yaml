@@ -1,7 +1,7 @@
 ---
 global:
   image:
-    # -- Overrides the Docker registry globally for all images
+    # --  Overrides the Docker registry globally for all images
     registry: null
   # -- Overrides the priorityClassName for all pods
   priorityClassName: null

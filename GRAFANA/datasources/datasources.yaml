@@ -10,7 +10,7 @@ datasources:
       access: proxy
       version: 1
       editable: false
-   # Prometheus Datasource marked as default
+   #   Prometheus Datasource marked as default
     - name: prometheus
       type: prometheus
       uid: prometheus

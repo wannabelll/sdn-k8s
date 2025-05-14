@@ -6,3 +6,4 @@ datasources:
   url: http://prometheus-service.monitoring.svc.cluster.local:8080
   access: proxy
   isDefault: true
+# url

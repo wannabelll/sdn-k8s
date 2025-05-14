@@ -1,0 +1,25 @@
+@startuml
+participant "User" as User
+participant "Kubernetes API Server" as APIServer
+participant "Antrea Controller" as AntreaController
+participant "Antrea Agent" as AntreaAgent
+participant "Pod" as Pod
+participant "Pod Network" as PodNetwork
+participant "Kubelet" as Kubelet
+participant "Open vSwitch(OVS)" as OVS
+
+
+
+User -> APIServer : Interacts with API Server (e.g. create pods)
+APIServer -> Kubelet : Send pod creation request
+Kubelet -> Pod : Create Pod
+Kubelet -> AntreaAgent : Request network setup for Pod
+AntreaAgent -> AntreaController : Request network configuration
+AntreaController -> APIServer : Apply network policy(changes to Pods)
+AntreaAgent -> PodNetwork : Assign network resources (IP, routes)
+Pod -> PodNetwork : Communicates over network
+AntreaAgent -> OVS : Configure Open vSwitch for networking
+AntreaAgent -> APIServer : Report resource status (e.g. IP, network)
+APIServer -> PodNetwork : Ensure network connectivity for Pod
+APIServer -> AntreaController : Manage network poolicies for Pods
+@enduml
