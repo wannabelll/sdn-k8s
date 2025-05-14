@@ -1,5 +1,5 @@
 ---
-# Source: loki/templates/service-memberlist.yaml
+# Source:  loki/templates/service-memberlist.yaml
 apiVersion: v1
 kind: Service
 metadata:

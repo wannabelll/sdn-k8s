@@ -1,5 +1,5 @@
 ---
-# Source: loki/templates/single-binary/service.yaml
+# Source:  loki/templates/single-binary/service.yaml
 apiVersion: v1
 kind: Service
 metadata:

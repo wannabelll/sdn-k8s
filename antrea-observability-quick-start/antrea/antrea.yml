@@ -1,5 +1,5 @@
 ---
-# Source: crds/antreaagentinfo.yaml
+# Source:  crds/antreaagentinfo.yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -54,7 +54,7 @@ spec:
       - aai
 
 ---
-# Source: crds/antreacontrollerinfo.yaml
+# Source:  crds/antreacontrollerinfo.yaml
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -3266,7 +3266,7 @@ data:
         ]
     }
   antrea-controller.conf: |
-    # FeatureGates is a map of feature names to bools that enable or disable experimental features.
+    # FeatureGates  is a map of feature names to bools that enable or disable experimental features.
     featureGates:
     # AllAlpha is a global toggle for alpha features. Per-feature key values override the default set by AllAlpha.
     #  AllAlpha: false

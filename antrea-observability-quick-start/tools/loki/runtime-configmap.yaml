@@ -1,5 +1,5 @@
 ---
-# Source: loki/templates/runtime-configmap.yaml
+# Source:  loki/templates/runtime-configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:

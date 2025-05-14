@@ -1,5 +1,5 @@
 #!/bin/bash
-# Populate metrics and logs by creating some dummy objects
+# Populate metrics and logs by creating some ephimeral objects
 # 
 
 
@@ -28,17 +28,17 @@ echo -e "\033[0;33m"   It will spin up some client and a deployment-backed Clust
 echo -e "\033[0;33m"   After that it will create random AntreaNetworkPolicies and AntreaClusterNetworkPolicies and it will generate some traffic with random patterns"\033[0m"
 echo -e "\033[0;33m"   It will also randomly scale in and out the deployment during execution. This is useful for demo to see all metrics and logs showing up in the visualization tool"\033[0m"
 echo
-echo -e "\033[1;33m"For more information go to https://sdefinitive.net"\033[0m"
+
 echo
 
-# Crear un servicio con deployment appache
+# Create a service with Apache deployment
 kubectl create deployment www --image=httpd --replicas=1 --port=80>/dev/null 2>&1
 kubectl expose deployment/www --port=80 >/dev/null 2>&1
 
-# Crear pod con curl
+# Create pod with curl
 kubectl run curl --image=curlimages/curl --command -- /bin/sh -c "sleep infinity" >/dev/null 2>&1
 
-# Crear pod con hping3 traffic simulation
+# Create pod with hping3 traffic simulation
 kubectl run ddos --image=sflow/hping3 --command -- /bin/sh -c "sleep infinity" >/dev/null 2>&1
 
 # Waiting for pods to be created
@@ -148,7 +148,7 @@ kubectl exec ddos -- hping3 -c $[($RANDOM % 2000) + 1] --faster -S -p 80 www >/d
 sleep .$[ ( $RANDOM % 20 ) + 1 ]s
 done
 done
-# Reciclado de objetos para nuevas IPS
+# Recycling objects for new IPS
 kubectl delete pod curl --force --grace-period=0 >/dev/null 2>&1 &&
 kubectl delete pod ddos --force --grace-period=0 >/dev/null 2>&1 &&
 kubectl delete svc www >/dev/null 2>&1 &&

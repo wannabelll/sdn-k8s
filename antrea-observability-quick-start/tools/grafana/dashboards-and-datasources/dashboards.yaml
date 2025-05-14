@@ -1933,7 +1933,7 @@ items:
                 },
                 "editorMode": "code",
                 "exemplar": false,
-                "expr": "rate(antrea_agent_ovs_flow_ops_error_count{instance=~\"$instance.*\"}[1m]) * 60",
+                "expr": "rate(antrea_agent_ovs_flow_ops_error_count{instance=~\"$instance.*\"}[1m]) *60",
                 "format": "time_series",
                 "instant": false,
                 "legendFormat": "{{instance}}  {{operation}}",

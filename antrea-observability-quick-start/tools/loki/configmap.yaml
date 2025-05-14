@@ -1,5 +1,5 @@
 ---
-# Source: loki/templates/configmap.yaml
+# Source:  loki/templates/configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:

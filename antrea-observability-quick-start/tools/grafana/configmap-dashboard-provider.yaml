@@ -1,5 +1,5 @@
 ---
-# Source: grafana/templates/configmap-dashboard-provider.yaml
+# Source:  grafana/templates/configmap-dashboard-provider.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:

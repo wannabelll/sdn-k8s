@@ -1,5 +1,5 @@
 ---
-# Source: grafana/templates/configmap.yaml
+# Source:  grafana/templates/configmap.yaml
 apiVersion: v1
 kind: ConfigMap
 metadata:

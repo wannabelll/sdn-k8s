@@ -1,5 +1,5 @@
 ---
-# Source: loki/templates/single-binary/service-headless.yaml
+# Source:  loki/templates/single-binary/service-headless.yaml
 apiVersion: v1
 kind: Service
 metadata:

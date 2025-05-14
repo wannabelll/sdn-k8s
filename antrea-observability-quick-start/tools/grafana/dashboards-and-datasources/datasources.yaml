@@ -13,6 +13,7 @@ data:
         type: loki
         url: http://loki:3100
         access: proxy
+        
 ---
 apiVersion: v1
 kind: ConfigMap
